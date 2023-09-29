@@ -10,7 +10,7 @@ export default defineConfig({
     federation({
       name: 'host-app',
       remotes: {
-        remote_app: 'http://localhost:8081/assets/remoteEntry.js',
+        remote_app: 'http://localhost:8001/assets/remoteEntry.js',
       },
       shared: ['vue'],
     }),
