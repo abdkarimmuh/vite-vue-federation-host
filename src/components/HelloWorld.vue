@@ -1,22 +1,26 @@
 <script setup>
-import { ref, defineAsyncComponent } from 'vue'
-const RemoteButton = defineAsyncComponent(() => import("remote_app/Button")); 
-const RemoteDocs = defineAsyncComponent(() => import("remote_app/Docs")); 
+import { defineAsyncComponent } from "vue";
+import counterStore from "@/store/counter";
+
+const RemoteButton = defineAsyncComponent(() => import("remote_app/Button"));
+const RemoteDocs = defineAsyncComponent(() => import("remote_app/Docs"));
 
 defineProps({
   msg: String,
-})
+});
 
-const count = ref(0)
+const count = counterStore();
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
-
   <div class="card">
-    <RemoteButton :count="count" @onClick="count++"></RemoteButton>
+    <RemoteButton
+      :count="count.getCounter"
+      @onClick="count.increment()"
+    ></RemoteButton>
     <!-- <button type="button" @click="count++">count is {{ count }}</button> -->
-    
+
     <p>
       Edit
       <code>components/HelloWorld.vue</code> to test HMR
